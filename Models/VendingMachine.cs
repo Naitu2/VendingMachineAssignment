@@ -95,25 +95,9 @@ namespace VendingMachineAssignment.Models
             }
         }
 
-
         public Beverage[] GetBeverages()
         {
             return _beverages.Take(_count).ToArray();
-        }
-
-        public int BeveragesCount()
-        {
-            return _count;
-        }
-
-        public Beverage GetBeverageAt(int index)
-        {
-            if (index < 0 || index >= _count)
-            {
-                throw new IndexOutOfRangeException("Invalid beverage index!");
-            }
-
-            return _beverages[index];
         }
     }
 

@@ -25,7 +25,7 @@ class Menu
                 {
                     try
                     {
-                        machine.MakeBeverage(beverages[selectedItem - 1]); // Subtract 1 because the array is 0-based and the menu starts at 1
+                        machine.MakeBeverage(beverages[selectedItem - 1]);
                         Console.WriteLine("\nThank you for using the machine! Press any key to exit...");
                         return;
                     }
@@ -43,7 +43,7 @@ class Menu
             }
             else if (input.ToLower() == "exit")
             {
-                return; // Exit the loop if 'exit' is typed
+                return;
             }
             else
             {
