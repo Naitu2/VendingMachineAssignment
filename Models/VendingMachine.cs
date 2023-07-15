@@ -12,6 +12,7 @@ namespace VendingMachineAssignment.Models
         private int _count;
         private int _capacity;
         private Storage _storage;
+        public bool ConnectedToWater { get; set; } = false;
 
         public VendingMachine(int size = 15, params Beverage[] beverages)
         {
@@ -44,6 +45,16 @@ namespace VendingMachineAssignment.Models
 
         public void MakeBeverage(Beverage beverage)
         {
+            if (!ConnectedToWater)
+            {
+                throw new InvalidOperationException("The vending machine is not connected to water!");
+            }
+
+            if (!_storage.CheckCupAvailability(1))
+            {
+                throw new InvalidOperationException("Not enough cups in storage to make a beverage!");
+            }
+
             foreach (var ingredient in beverage.Ingredients)
             {
                 if (!_storage.CheckIngredientAvailability(ingredient, 1))
@@ -54,9 +65,21 @@ namespace VendingMachineAssignment.Models
                 _storage.UseIngredient(ingredient, 1);
             }
 
+            _storage.UseCups(1);
             Console.WriteLine(beverage.Prepare());
         }
 
+        public void LoadCups(int amount)
+        {
+            try
+            {
+                _storage.AddCups(amount);
+            }
+            catch (InvalidOperationException)
+            {
+                Console.WriteLine($"Can't add more cups, storage is full!");
+            }
+        }
 
         public void LoadIngredients(int amount = 30, Ingredient? loadedIngredient = null)
         {

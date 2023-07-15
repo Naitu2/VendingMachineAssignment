@@ -10,9 +10,10 @@ namespace VendingMachineAssignment
             vendingMachine.AddBeverage(new Coffee());
             vendingMachine.AddBeverage(new Cocoa());
 
+            vendingMachine.LoadCups(100);
             vendingMachine.LoadIngredients(50, Ingredient.TeaLeaves);
             vendingMachine.LoadIngredients(50);
-            
+            vendingMachine.ConnectedToWater = true;
 
             Menu.Start(vendingMachine);
         }
