@@ -69,5 +69,22 @@ namespace VendingMachineAssignment.Models
         }
         protected abstract string AddHotWater();
         protected abstract string Stirring();
+
+        public override string ToString()
+        {
+            return $"Beverage: {Name}, Price: {Price}";
+        }
+
+        public override bool Equals(object obj)
+        {
+            Beverage otherBeverage = obj as Beverage;
+
+            if (otherBeverage != null && Name == otherBeverage.Name && Price == otherBeverage.Price)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

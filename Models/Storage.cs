@@ -8,11 +8,40 @@ using VendingMachineAssignment.Models;
 public class Storage
 {
     public Dictionary<Ingredient, int> Ingredients { get; set; }
+    public int Cups { get; private set; }
     private const int MAX_INGREDIENT_AMOUNT = 100;
+    private const int MAX_CUP_AMOUNT = 100;
 
     public Storage()
     {
         Ingredients = new Dictionary<Ingredient, int>();
+    }
+
+    public void AddCups(int amount)
+    {
+        if (Cups + amount > MAX_CUP_AMOUNT)
+        {
+            throw new InvalidOperationException($"Can't exceed maximum cup amount of {MAX_CUP_AMOUNT}!");
+        }
+
+        Cups += amount;
+    }
+
+    public bool CheckCupAvailability(int amount)
+    {
+        return Cups >= amount;
+    }
+
+    public void UseCups(int amount)
+    {
+        if (CheckCupAvailability(amount))
+        {
+            Cups -= amount;
+        }
+        else
+        {
+            throw new InvalidOperationException("Not enough cups in storage!");
+        }
     }
 
     public void AddIngredient(Ingredient ingredient, int amount)

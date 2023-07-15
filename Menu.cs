@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using VendingMachineAssignment.Models;
 
 class Menu
@@ -11,6 +14,9 @@ class Menu
     {
         machine = vendingMachine;
         beverages = new List<Beverage>(machine.GetBeverages());
+
+        Console.Write("Press any key to start..."); // To see all the exceptions that may pop before starting the menu
+        Console.ReadKey();
 
         do
         {
