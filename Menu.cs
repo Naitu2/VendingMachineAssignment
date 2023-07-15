@@ -23,15 +23,33 @@ class Menu
             {
                 if (selectedItem > 0 && selectedItem <= beverages.Count)
                 {
-                    try
+                    Console.Write("\nEnter your payment amount: ");
+                    input = Console.ReadLine();
+                    if (double.TryParse(input, out double paymentAmount) && paymentAmount >= 0)
                     {
-                        machine.MakeBeverage(beverages[selectedItem - 1]);
-                        Console.WriteLine("\nThank you for using the machine! Press any key to exit...");
-                        return;
+                        if (paymentAmount >= beverages[selectedItem - 1].Price)
+                        {
+                            try
+                            {
+                                machine.MakeBeverage(beverages[selectedItem - 1]);
+                                Console.WriteLine("\nThank you for using the machine! Press any key to exit...");
+                                return;
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine($"\nError: {e.Message}. Press any key to continue...");
+                                Console.ReadKey();
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nNot enough money provided. Press any key to try again...");
+                            Console.ReadKey();
+                        }
                     }
-                    catch (Exception e)
+                    else
                     {
-                        Console.WriteLine($"\nError: {e.Message}. Press any key to continue...");
+                        Console.WriteLine("\nInvalid payment amount. Press any key to continue...");
                         Console.ReadKey();
                     }
                 }
@@ -57,7 +75,7 @@ class Menu
     private static void DrawMenu()
     {
         Console.WriteLine("VENDING MACHINE MENU");
-        Console.WriteLine("Type \"exit\" to exit\n");
+        Console.WriteLine("Type \"exit\" to quit\n");
         Console.WriteLine("Please choose a drink to make:");
 
         for (int i = 0; i < beverages.Count; i++)
@@ -66,4 +84,3 @@ class Menu
         }
     }
 }
-

@@ -34,9 +34,9 @@ namespace VendingMachineAssignment.Models
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine(AddIngredients() + "\n");
-            sb.AppendLine(AddHotWater() + "\n");
-            sb.AppendLine(Stirring() + "\n");
+            sb.AppendLine("\n" + AddIngredients());
+            sb.AppendLine("\n" + AddHotWater());
+            sb.AppendLine("\n" + Stirring());
 
             return sb.ToString();
             
