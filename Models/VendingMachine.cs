@@ -43,6 +43,24 @@ namespace VendingMachineAssignment.Models
             }
         }
 
+        public void RemoveBeverage(Beverage beverage)
+        {
+            int index = Array.IndexOf(_beverages, beverage);
+
+            if (index == -1)
+            {
+                throw new InvalidOperationException("The beverage does not exist in the vending machine!");
+            }
+
+            for (int i = index; i < _count - 1; i++)
+            {
+                _beverages[i] = _beverages[i + 1];
+            }
+
+            _beverages[_count - 1] = null;
+            _count--;
+        }
+
         public void MakeBeverage(Beverage beverage)
         {
             if (!ConnectedToWater)

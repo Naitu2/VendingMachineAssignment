@@ -15,6 +15,9 @@ class Menu
         machine = vendingMachine;
         beverages = new List<Beverage>(machine.GetBeverages());
 
+        Console.Write("Press any key to start..."); // To see all the exceptions that may pop before starting the menu
+        Console.ReadKey();
+
         do
         {
             Console.Clear();
