@@ -13,7 +13,6 @@ namespace VendingMachineAssignment.Models
         public Ingredient[] Ingredients;
         public string Name { get; set; }
         private double _price;
-
         public double Price
         {
             get { return _price; }
@@ -28,6 +27,13 @@ namespace VendingMachineAssignment.Models
                     throw new InvalidOperationException("The price can't be less than 0!");
                 }
             }
+        }
+
+        public Beverage(string name, double price, params Ingredient[] ingredients)
+        {
+            Name = name;
+            Price = price;
+            Ingredients = ingredients;
         }
 
         public string Prepare()
@@ -69,7 +75,6 @@ namespace VendingMachineAssignment.Models
         }
         protected abstract string AddHotWater();
         protected abstract string Stirring();
-
         public override string ToString()
         {
             return $"Beverage: {Name}, Price: {Price}";

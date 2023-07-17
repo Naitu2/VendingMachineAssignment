@@ -7,7 +7,7 @@ using VendingMachineAssignment.Models;
 
 public class Storage
 {
-    public Dictionary<Ingredient, int> Ingredients { get; set; }
+    public Dictionary<Ingredient, int> Ingredients {get; private set; }
     public int Cups { get; private set; }
     private const int MAX_INGREDIENT_AMOUNT = 100;
     private const int MAX_CUP_AMOUNT = 100;

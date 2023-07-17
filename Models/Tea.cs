@@ -8,17 +8,11 @@ namespace VendingMachineAssignment.Models
 {
     internal class Tea : Beverage
     {
-        public Tea()
+        public Tea(string name, double price, params Ingredient[] additionalIngredients)
+    : base(name, price, new Ingredient[] { Ingredient.TeaLeaves}.Concat(additionalIngredients).ToArray())
         {
-            Ingredients = new[]
-            {
-                Ingredient.TeaLeaves,
-                Ingredient.Sugar,
-            };
-
-            Name = "Tea";
-            Price = 1.5;
         }
+
 
         protected override string AddHotWater()
         {
