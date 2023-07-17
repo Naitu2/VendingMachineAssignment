@@ -9,18 +9,11 @@ namespace VendingMachineAssignment.Models
 {
     internal class Cocoa : Beverage
     {
-        public Cocoa()
+        public Cocoa(string name, double price, params Ingredient[] additionalIngredients)
+     : base(name, price, new Ingredient[] { Ingredient.CocoaPowder, Ingredient.Milk }.Concat(additionalIngredients).ToArray())
         {
-            Ingredients = new[]
-            {
-                Ingredient.CocoaPowder,
-                Ingredient.Sugar,
-                Ingredient.Milk
-            };
-
-            Name = "Cocoa";
-            Price = 3.0;
         }
+
 
         protected override string AddHotWater()
         {

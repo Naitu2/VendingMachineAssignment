@@ -12,7 +12,11 @@ namespace VendingMachineAssignment.Models
         Sugar,
         CoffeeBeans,
         CocoaPowder,
-        Milk
+        Milk,
+        Honey,
+        Lemon,
+        Cinnamon,
+        Cloves
     }
 
 }

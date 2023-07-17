@@ -11,18 +11,27 @@ namespace VendingMachineAssignment
     {
         static void Main(string[] args)
         {
-            Beverage tea = new Tea();
-            Beverage coffee = new Coffee();
-            Beverage cocoa = new Cocoa();
+            Cocoa classicCocoa = new Cocoa("Classic Cocoa", 3.0, Ingredient.Sugar);
+            Cocoa darkCocoa = new Cocoa("Dark Cocoa", 3.5);
 
-            VendingMachine vendingMachine = new VendingMachine(5, tea, coffee);
+            Coffee classicCoffee = new Coffee("Classic Coffee", 2.5, Ingredient.Sugar);
+            Coffee blackCoffee = new Coffee("Black Coffee", 2.0);
+            Coffee cappuccino = new Coffee("Cappuccino", 3.0, Ingredient.Milk, Ingredient.Sugar);
 
-            vendingMachine.AddBeverage(cocoa);
-            vendingMachine.RemoveBeverage(cocoa);
+            Beverage greenTea = new Tea("Green Tea", 1.8, Ingredient.Honey, Ingredient.Lemon);
+            Beverage chaiTea = new Tea("Chai Tea", 2.0, Ingredient.Cinnamon, Ingredient.Cloves);
 
-            vendingMachine.LoadCups(100);
+
+            VendingMachine vendingMachine = new VendingMachine(10, chaiTea, classicCoffee);
+
+            vendingMachine.AddBeverage(classicCocoa);
+            vendingMachine.AddBeverage(blackCoffee);
+            vendingMachine.RemoveBeverage(classicCocoa);
+
+            vendingMachine.LoadCups(2);
             vendingMachine.LoadIngredients(50, Ingredient.TeaLeaves);
             vendingMachine.LoadIngredients(30);
+
             vendingMachine.ConnectedToWater = true;
 
             Menu.Start(vendingMachine);
