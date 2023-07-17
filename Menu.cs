@@ -31,15 +31,19 @@ class Menu
                 {
                     Console.Write("\nEnter your payment amount: ");
                     input = Console.ReadLine();
+
                     if (double.TryParse(input, out double paymentAmount) && paymentAmount >= 0)
                     {
+                        double change = paymentAmount  - beverages[selectedItem - 1].Price;
+
                         if (paymentAmount >= beverages[selectedItem - 1].Price)
                         {
                             try
                             {
                                 machine.MakeBeverage(beverages[selectedItem - 1]);
-                                Console.WriteLine("\nThank you for using the machine! Press any key to exit...");
-                                return;
+                                Console.WriteLine("Your changes is {0}$", change);
+                                Console.WriteLine("\nThank you for using the machine! Press any key to return to menu...");
+                                Console.ReadKey();
                             }
                             catch (Exception e)
                             {
@@ -86,7 +90,7 @@ class Menu
 
         for (int i = 0; i < beverages.Count; i++)
         {
-            Console.WriteLine($"{i + 1}. {beverages[i].Name} - ${beverages[i].Price}");
+            Console.WriteLine($"{i + 1}. {beverages[i].Name} - {beverages[i].Price}$");
         }
     }
 }
